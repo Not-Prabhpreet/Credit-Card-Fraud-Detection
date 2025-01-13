@@ -13,15 +13,20 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
-# Add CORS middleware
+# Add CORS middleware with updated origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Vite's default port
+    allow_origins=[
+        "http://localhost:5173",  # Local development
+        "https://credit-card-fraud-detection-frontend-uwbk.onrender.com",  # Your Render frontend URL
+        "*"  # Temporarily allow all origins for testing
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# Rest of your code remains the same...
 # Load the trained model
 try:
     model = joblib.load('fraud_detection_model.joblib')
