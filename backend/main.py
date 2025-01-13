@@ -18,7 +18,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",  # Local development
-        "https://credit-card-fraud-detection-frontend-uwbk.onrender.com",  # Your Render frontend URL
+        "https://credit-card-fraud-detection-1-fkj3.onrender.com",  # Your Render frontend URL
         "*"  # Temporarily allow all origins for testing
     ],
     allow_credentials=True,
