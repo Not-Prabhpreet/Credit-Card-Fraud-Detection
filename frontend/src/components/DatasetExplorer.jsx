@@ -6,18 +6,15 @@ const DatasetExplorer = ({ onSelectTransaction }) => {
   const [explanation, setExplanation] = useState({});
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch('http://localhost:8000/sample-transactions')
+ useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/sample-transactions`)
       .then(res => res.json())
       .then(data => {
         setSamples(data.samples);
         setExplanation(data.explanation);
         setLoading(false);
       })
-      .catch(err => {
-        console.error('Error fetching samples:', err);
-        setLoading(false);
-      });
+      .catch(err => console.error('Error fetching samples:', err));
   }, []);
 
   const handleCopy = (transaction) => {
