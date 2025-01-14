@@ -20,8 +20,11 @@ COPY backend/ .
 # Copy built frontend to static directory
 COPY --from=frontend-builder /frontend/dist /app/static
 
+# Make port configurable via environment variable
+ENV PORT=8000
+
 # Expose port
-EXPOSE 8000
+EXPOSE $PORT
 
 # Command to run the application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD uvicorn main:app --host 0.0.0.0 --port $PORT

@@ -28,7 +28,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Rest of your code remains the same...
 # Load the trained model
 try:
     model = joblib.load('fraud_detection_model.joblib')
@@ -129,6 +128,8 @@ async def health_check():
         "status": "healthy",
         "model_loaded": model is not None
     }
+
+# Static files and SPA route should be last
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 @app.get("/{full_path:path}")
