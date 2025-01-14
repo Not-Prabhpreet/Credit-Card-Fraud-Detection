@@ -42,7 +42,7 @@ const FraudDetectionForm = () => {
 
       console.log('Sending request data:', requestData);
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/predict`, {
+      const response = await fetch('/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

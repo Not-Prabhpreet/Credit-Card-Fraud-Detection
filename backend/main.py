@@ -1,6 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 import numpy as np
 import pandas as pd
 import joblib
@@ -127,3 +129,8 @@ async def health_check():
         "status": "healthy",
         "model_loaded": model is not None
     }
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
+
+@app.get("/{full_path:path}")
+async def serve_spa(full_path: str):
+    return FileResponse("static/index.html")
